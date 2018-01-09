@@ -178,6 +178,7 @@ celerybeat-schedule
 
 # SageMath parsed files
 *.sage.py
+*.ini
 
 # Environments
 .env
@@ -194,7 +195,6 @@ venv.bak/
 
 # Rope project settings
 .ropeproject
-.ini
 # mkdocs documentation
 /site
 
