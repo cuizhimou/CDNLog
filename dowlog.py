@@ -4,6 +4,7 @@ import requests
 import gzip
 import cdn
 import json
+import datetime
 
 
 #设置下载后的存放路径
@@ -18,8 +19,10 @@ def dowlog(Logname,Logpath):
         for con in r.iter_content(chunk_size=128):
             if con:
                 f.write(con)
-    # g = gzip.GzipFile(mode='rb', fileobj=open('./'+Logname,'rb'))
-    # open('./'+Logname, 'wb').write(g.read())
+
+    g = gzip.GzipFile(mode='rb', fileobj=open('./'+Logname,'rb'))
+    name=Logname.split('.gz')
+    open('./'+name[0], 'wb').write(g.read())
 #解析json数据,迭代器
 def Parsers(requesturl):
     r = requests.get(requesturl, stream=True)
