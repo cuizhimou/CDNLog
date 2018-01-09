@@ -33,13 +33,17 @@ def Parsers(requesturl):
 
 
 if __name__ == '__main__':
-    cdn.setup_credentials()
+    today = datetime.date.today()
+    yesterday = today - datetime.timedelta(days=1)
+    domainname='kaiwu.feellike21.com'
+
     user_params = {
-        "Action": "DescribeCdnDomainLogs","DomainName":"cdn.feellike21.com","LogDay": "2017-12-22"
+        "Action": "DescribeCdnDomainLogs", "DomainName": domainname, "LogDay": str(yesterday)
     }
+
+    cdn.setup_credentials()
     apiurl=cdn.make_request(user_params)
     print apiurl
-    Parsers(apiurl)
     for name,path in Parsers(apiurl):
         path='https://'+path
         dowlog(name,path)
